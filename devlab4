@@ -1,0 +1,120 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+devops 1st program: https://pdfhost.io/v/Kun5ybpTpX_devops_prog1
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+devops 2nd program: https://pdfhost.io/v/4FmfNEDCUK_devops_program_2
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+devops 3rd program: https://pdfhost.io/v/YkbEhUD6cv_devops_Program_3
+
+INSTEAD USE THIS URL: https://dontpad.com/devlab03
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+** devops 4th porgram: https://pdfhost.io/v/gPsZpSXnBk_DEVOPS-LAB-P4 **
+
+CHANGE THE FILE PATH IN THE BELOW PIPELINE SCRIPT!!
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Prepare Workspace') {
+            steps {
+                // Copy local code using Windows command
+                bat 'xcopy /s /e /y "C:\\Users\\Admin\\Desktop\\helloworld.py" .'
+            }
+        }
+
+        stage('Code Analysis') {
+            environment {
+                scannerHome = tool 'Sonar'
+            }
+            steps {
+                script {
+                    withSonarQubeEnv('Sonar') {
+                        bat """
+                            ${scannerHome}\\bin\\sonar-scanner.bat ^
+                            -Dsonar.projectKey=your_project_key ^
+                            -Dsonar.projectName=your_project_name ^
+                            -Dsonar.projectVersion=1.0 ^
+                            -Dsonar.sources=.
+                        """
+                    }
+                }
+            }
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+** devops 5th one **:
+
+LINK:https://pdfhost.io/v/B5ERPaAP3n_DEVOPS-LAB-P5
+
+download maven binary zip
+set environment variable to bin
+
+setx MAVEN_HOME "your path" /M
+setx PATH "%PATH%;YOUR BIN PATH" /M
+
+mvn -v (to check running)
+mvn archetype:generate -DgroupId=com.example -DartifactId=demo-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false (create project)
+
+to pom.xml add:
+<dependency>
+<groupId>com.google.code.gson</groupId>
+<artifactId>gson</artifactId>
+<version>2.10.1</version>
+</dependency>
+
+cd demo-project
+
+mvn compile
+mvn test
+mvn package
+
+java -cp target/demo-project1-1.0-SNAPSHOT.jar com.example.App
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**for 6th continue with**:
+LINK: https://pdfhost.io/v/YAJNdBn7cD_DEVOPS-LAB-Program6
+
+
+- delete pom.xml
+
+- download gradle
+
+setx GRADLE_HOME "YOUR PATH" /M
+setx PATH "%PATH%; <PATH TO GRADLE BIN>" M\
+
+gradle -v
+
+make two gradle files:
+build.gradle:
+
+plugins {
+id 'java'
+}
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+repositories {
+mavenCentral()
+}
+dependencies {
+testImplementation'junit:junit:4.13.2'
+}
+
+
+settings.gradle:
+rootProject.name='demo-project1'
+
+gradle build 
+gradle test
+
+java -cp build/libs/demo-project1-1.0-SNAPSHOT.jar com.example.App 
+java -cp target/demo-project1-1.0-SNAPSHOT.jar com.example.App (backup)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
