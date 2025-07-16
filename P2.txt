@@ -7,17 +7,17 @@ if __name__ == '__main__':
 app.run(host='0.0.0.0', port=5000) 
 
 
-# Use the official Python image from Docker Hub 
+
 FROM python:3.8-slim 
-# Set the working directory inside the container 
+ 
 WORKDIR /app 
-# Copy the local app file into the container 
+
 COPY app.py . 
-# Install Flask 
+
 RUN pip install flask 
-# Expose port 5000 for the web app 
+
 EXPOSE 5000 
-# Command to run the app 
+
 CMD ["python", "app.py"] 
 
 
