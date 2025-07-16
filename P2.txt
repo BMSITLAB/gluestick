@@ -1,0 +1,37 @@
+from flask import Flask 
+app = Flask(__name__) 
+@app.route('/') 
+def hello_world(): 
+return 'Hello, Docker!' 
+if __name__ == '__main__': 
+app.run(host='0.0.0.0', port=5000) 
+
+
+# Use the official Python image from Docker Hub 
+FROM python:3.8-slim 
+# Set the working directory inside the container 
+WORKDIR /app 
+# Copy the local app file into the container 
+COPY app.py . 
+# Install Flask 
+RUN pip install flask 
+# Expose port 5000 for the web app 
+EXPOSE 5000 
+# Command to run the app 
+CMD ["python", "app.py"] 
+
+
+
+Step 5: Push Docker Image to Docker Hub 
+1. Create a Docker Hub Account: Go to Docker Hub and sign up for an account. 
+2. Login to Docker Hub 
+Use the following command to log in to Docker Hub: 
+docker login 
+Enter your Docker Hub credentials. 
+3. Tag and Push the Image 
+Tag the image you want to upload: 
+docker   tag    python-flask-app <your_dockerhub_username>/python-flask-app 
+Push the image to Docker Hub: 
+docker    push    <your_dockerhub_username>/python-flask-app 
+4. Pull Image from Docker Hub 
+docker    pull   <your_dockerhub_username>/python-flask-app 
